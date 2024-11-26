@@ -1,0 +1,194 @@
+<div class="container">
+  <h3>Listado de empleados</h3>
+  <div class="container-btns">
+    <button nz-button class="btn-add" (click)="showModalMiddle(true)">
+      Agregar empleado
+    </button>
+
+    <button nz-button class="btn-logout" (click)="logout()">
+      Cerrar sesion
+    </button>
+  </div>
+  <nz-modal
+    [(nzVisible)]="isVisibleMiddle"
+    nzTitle="Agregar Empleado"
+    nzCentered
+    (nzOnCancel)="showModalMiddle(false)"
+    [nzFooter]="null"
+    nzWidth="800px"
+  >
+    <ng-container *nzModalContent>
+      <form
+        nz-form
+        [formGroup]="validateForm"
+        class="login-form"
+        (ngSubmit)="handleAddEmployee()"
+      >
+        <nz-form-item class="container-inputs">
+          <nz-form-control nzErrorTip="Este campo es obligatorio">
+            <input
+              type="text"
+              nz-input
+              formControlName="nombres"
+              placeholder="Ingrese nombres"
+            />
+          </nz-form-control>
+          <nz-form-control nzErrorTip="Este campo es obligatorio">
+            <input
+              type="text"
+              nz-input
+              formControlName="apellidos"
+              placeholder="Ingrese apellidos"
+            />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item class="container-inputs">
+          <nz-form-control nzErrorTip="Este campo es obligatorio">
+            <input
+              type="text"
+              nz-input
+              formControlName="telefono"
+              placeholder="Ingrese telefono"
+            />
+          </nz-form-control>
+          <nz-form-control nzErrorTip="Este campo es obligatorio">
+            <input
+              type="text"
+              nz-input
+              formControlName="correo"
+              placeholder="Ingrese correo electronico"
+            />
+          </nz-form-control>
+          <nz-form-control nzErrorTip="Este campo es obligatorio">
+            <nz-select
+              formControlName="idArea"
+              nzPlaceHolder="Seleccione un area"
+            >
+              <nz-option nzLabel="Recursos Humanos" nzValue="1"></nz-option>
+              <nz-option nzLabel="Tecnologia" nzValue="2"></nz-option>
+              <nz-option nzLabel="Marketing" nzValue="3"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+        <button
+          nz-button
+          class="login-form-button login-form-margin"
+          [nzType]="'primary'"
+        >
+          Guardar
+        </button>
+      </form>
+    </ng-container>
+  </nz-modal>
+  <nz-table
+    nzShowPagination="false"
+    class="w-table"
+    #basicTable
+    [nzData]="employee"
+    [nzBordered]="true"
+    [nzLoading]="loading"
+  >
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombres</th>
+        <th>Apellidos</th>
+        <th>Telefono</th>
+        <th>Correo</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of employee">
+        <td>{{ item.id }}</td>
+        <td>{{ item.nombres }}</td>
+        <td>{{ item.apellidos }}</td>
+        <td>{{ item.telefono }}</td>
+        <td>{{ item.correo }}</td>
+        <td>
+          <button
+            nz-button
+            nzSize="small"
+            class="btn-edit"
+            (click)="showModalMiddleEdit(true, item)"
+          >
+            Editar
+            <span nz-icon nzType="edit" nzTheme="outline"></span>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+
+  <nz-modal
+    [(nzVisible)]="isVisibleEdit"
+    nzTitle="Actualizar Empleado"
+    nzCentered
+    (nzOnCancel)="showModalMiddleEdit(false, null)"
+    [nzFooter]="null"
+    nzWidth="800px"
+  >
+    <ng-container *nzModalContent>
+      <form
+        nz-form
+        [formGroup]="validateFormEdit"
+        class="login-form"
+        (ngSubmit)="handleEditEmployee()"
+      >
+        <nz-form-item class="container-inputs">
+          <nz-form-control nzErrorTip="Este campo es obligatorio">
+            <input
+              type="text"
+              nz-input
+              formControlName="nombres"
+              placeholder="Ingrese nombres"
+            />
+          </nz-form-control>
+          <nz-form-control nzErrorTip="Este campo es obligatorio">
+            <input
+              type="text"
+              nz-input
+              formControlName="apellidos"
+              placeholder="Ingrese apellidos"
+            />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item class="container-inputs">
+          <nz-form-control nzErrorTip="Este campo es obligatorio">
+            <input
+              type="text"
+              nz-input
+              formControlName="telefono"
+              placeholder="Ingrese telefono"
+            />
+          </nz-form-control>
+          <nz-form-control nzErrorTip="Este campo es obligatorio">
+            <input
+              type="text"
+              nz-input
+              formControlName="correo"
+              placeholder="Ingrese correo electronico"
+            />
+          </nz-form-control>
+          <nz-form-control nzErrorTip="Este campo es obligatorio">
+            <nz-select
+              formControlName="idArea"
+              nzPlaceHolder="Seleccione un area"
+            >
+              <nz-option nzLabel="Recursos Humanos" nzValue="1"></nz-option>
+              <nz-option nzLabel="Tecnologia" nzValue="2"></nz-option>
+              <nz-option nzLabel="Marketing" nzValue="3"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+        <button
+          nz-button
+          class="login-form-button login-form-margin"
+          [nzType]="'primary'"
+        >
+          Guardar Cambios
+        </button>
+      </form>
+    </ng-container>
+  </nz-modal>
+</div>

@@ -1,0 +1,46 @@
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.w-table {
+  width: 80%;
+  margin-top: 16px;
+  height: 75%;
+  overflow-y: auto;
+}
+
+.btn-edit {
+  background-color: #ec942c;
+  color: #ffffff;
+  border-radius: 5px;
+  border-color: #ec942c;
+}
+
+.btn-add {
+  background-color: #40a6ce;
+  color: #ffffff;
+  border-radius: 5px;
+  border-color: #40a6ce;
+}
+
+.btn-logout {
+  background-color: #cc3300;
+  color: #ffffff;
+  border-radius: 5px;
+  border-color: #cc3300;
+}
+
+.container-inputs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: nowrap;
+}
+
+.container-btns {
+  gap: 10px;
+  display: flex;
+}
